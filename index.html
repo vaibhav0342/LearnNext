@@ -598,6 +598,112 @@
   <div class="answer" id="docker-a1">
     Docker is a containerization platform used to package applications and their dependencies into containers.
   </div>
+    <div class="question">
+  <strong>Q: Docker Container Exits Immediately, how will you troubleshoot?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a20')">Show Answer</button>
+</div>
+<div class="answer" id="a20">
+  Use <code>docker logs &lt;container-id&gt;</code> to check the error.<br />
+  Ensure the container’s default command is long-running or attach an interactive shell.
+</div>
+
+<div class="question">
+  <strong>Q: What is the purpose of EXPOSE in Dockerfile?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a21')">Show Answer</button>
+</div>
+<div class="answer" id="a21">
+  EXPOSE is documentation for which ports the container listens on.<br />
+  It doesn’t publish the port — you still need <code>-p</code> or <code>--publish</code> when running the container.
+</div>
+
+<div class="question">
+  <strong>Q: Port is Not Accessible on localhost even after Port mapping in Docker</strong>
+  <button class="show-answer" onclick="toggleAnswer('a22')">Show Answer</button>
+</div>
+<div class="answer" id="a22">
+  Ensure port is published using <code>-p hostPort:containerPort</code>.<br />
+  Check firewall and confirm app is bound to <code>0.0.0.0</code> and not <code>localhost</code>.
+</div>
+
+<div class="question">
+  <strong>Q: Data lost when container stops and restarts, How will you fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a23')">Show Answer</button>
+</div>
+<div class="answer" id="a23">
+  Use volumes for persistent storage:<br />
+  <code>-v /host/path:/container/path</code><br />
+  Or named volumes using <code>docker volume create</code>.
+</div>
+
+<div class="question">
+  <strong>Q: You made a code change, rebuilt the image, but the change isn't reflected?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a24')">Show Answer</button>
+</div>
+<div class="answer" id="a24">
+  Docker may be using cached layers.<br />
+  Add <code>--no-cache</code> while building or verify that your COPY command runs after code changes.
+</div>
+
+<div class="question">
+  <strong>Q: App Crashes with "Permission Denied" in Container but works fine on localhost</strong>
+  <button class="show-answer" onclick="toggleAnswer('a25')">Show Answer</button>
+</div>
+<div class="answer" id="a25">
+  File permissions or user mismatch.<br />
+  Use <code>USER</code> in Dockerfile or set proper permissions with <code>chmod</code> / <code>chown</code>.
+</div>
+
+<div class="question">
+  <strong>Q: Docker host is running out of disk space. How do you clean up?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a26')">Show Answer</button>
+</div>
+<div class="answer" id="a26">
+  Use <code>docker system prune</code> to remove unused data.<br />
+  Or more aggressively: <code>docker system prune -a</code> (removes all stopped containers, unused images, networks).
+</div>
+
+<div class="question">
+  <strong>Q: How will you Debug a Live Container?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a27')">Show Answer</button>
+</div>
+<div class="answer" id="a27">
+  Use <code>docker exec -it &lt;container&gt; /bin/bash</code> or <code>sh</code> to inspect the container.<br />
+  Check logs with <code>docker logs &lt;container&gt;</code>.
+</div>
+
+<div class="question">
+  <strong>Q: Which container registry do you use in your organization?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a28')">Show Answer</button>
+</div>
+<div class="answer" id="a28">
+  We use Docker Hub / GitHub Container Registry / Amazon ECR / GitLab Registry depending on project needs.
+</div>
+
+<div class="question">
+  <strong>Q: Explain the difference between CMD and Entrypoint in Docker</strong>
+  <button class="show-answer" onclick="toggleAnswer('a29')">Show Answer</button>
+</div>
+<div class="answer" id="a29">
+  <code>CMD</code> provides default arguments to <code>ENTRYPOINT</code> or runs directly if no <code>ENTRYPOINT</code>.<br />
+  <code>ENTRYPOINT</code> is not overridden when arguments are passed during <code>docker run</code>.
+</div>
+
+<div class="question">
+  <strong>Q: What docker commands you use on day to day basis?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a30')">Show Answer</button>
+</div>
+<div class="answer" id="a30">
+  <code>docker build</code>, <code>docker run</code>, <code>docker ps</code>, <code>docker exec</code>, <code>docker logs</code>, <code>docker stop</code>, <code>docker rm</code>, <code>docker images</code>, <code>docker system prune</code>
+</div>
+
+<div class="question">
+  <strong>Q: When will you forcefully remove a container and how?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a31')">Show Answer</button>
+</div>
+<div class="answer" id="a31">
+  When container is stuck or unresponsive.<br />
+  Use <code>docker rm -f &lt;container-id&gt;</code> to force remove it.
+</div>
 </div>
   
   <div class="question-box" id="kubernetes">
