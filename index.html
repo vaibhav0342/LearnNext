@@ -113,6 +113,7 @@
   </header>
 
   <div class="btn-container">
+    <button class="tool-btn" onclick="showTool('aws')">AWS</button> 
     <button class="tool-btn" onclick="showTool('git')">Git</button>
     <button class="tool-btn" onclick="showTool('linux')">Linux</button>
      <button class="tool-btn" onclick="showTool('docker')">Docker</button>
@@ -120,6 +121,160 @@
     <button class="tool-btn" onclick="showTool('jenkins')">Jenkins</button>
     <button class="tool-btn" onclick="showTool('terraform')">Terraform</button>
   </div>
+
+  <div class="question-box" id="aws">
+  <div class="question">
+    <strong>Q: Explain how will you design a highly available and scalable multi-tier app.</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a1')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a1">
+    Use ELB + Auto Scaling + Multi-AZ deployment. Frontend in public subnets, backend and DB in private subnets with RDS Multi-AZ or Aurora.
+  </div>
+
+  <div class="question">
+    <strong>Q: What is AWS NAT and when is it used?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a2')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a2">
+    NAT (Network Address Translation) is used to allow instances in a private subnet to access the internet without allowing inbound traffic.
+  </div>
+
+  <div class="question">
+    <strong>Q: How to enable Internet access to the application deployed in a private subnet?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a3')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a3">
+    Use a NAT Gateway or NAT instance in a public subnet, update route table for private subnet to route through NAT.
+  </div>
+
+  <div class="question">
+    <strong>Q: Can applications in different subnets of a VPC interact by default?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a4')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a4">
+    Yes, as long as subnet route tables and security groups/NACLs allow it, since all subnets in a VPC are routable by default.
+  </div>
+
+  <div class="question">
+    <strong>Q: Explain NACL vs SG and which one do you use in your organization?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a5')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a5">
+    SG is stateful, attached to ENI; NACL is stateless, attached to subnet. SG is commonly used for instance-level security.
+  </div>
+
+  <div class="question">
+    <strong>Q: EC2 Instance terminated unexpectedly. How will you troubleshoot?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a6')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a6">
+    Check CloudTrail, instance logs, Auto Scaling policies, termination protection, and billing/limits.
+  </div>
+
+  <div class="question">
+    <strong>Q: Lambda Function Fails Randomly. How will you fix the issue?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a7')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a7">
+    Check CloudWatch Logs, timeout settings, memory limits, dependencies, and retries. Use DLQ for debugging failures.
+  </div>
+
+  <div class="question">
+    <strong>Q: What will you do when AWS RDS Storage is Full?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a8')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a8">
+    Enable storage autoscaling if available, increase allocated storage manually, or delete/archive old data.
+  </div>
+
+  <div class="question">
+    <strong>Q: Developer Deleted Critical Resources like S3, RDS and EC2. What will you do?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a9')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a9">
+    Check CloudTrail logs, restore from backups/snapshots, implement RBAC policies to prevent future issues.
+  </div>
+
+  <div class="question">
+    <strong>Q: Explain a cost optimization activity that you performed in the current org.</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a10')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a10">
+    Right-sized EC2 instances, enabled S3 lifecycle rules, converted workloads to spot instances and reserved instances.
+  </div>
+
+  <div class="question">
+    <strong>Q: Explain a recent challenge that you faced with AWS and how did you solve it?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a11')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a11">
+    (Add your custom experience here – e.g., dealing with VPC peering DNS resolution or IAM permissions error.)
+  </div>
+
+  <div class="question">
+    <strong>Q: Auto Scaling Group Not Launching EC2. What can be the issue?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a12')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a12">
+    Check launch template/permissions, subnet capacity, instance limits, and AMI ID validity.
+  </div>
+
+  <div class="question">
+    <strong>Q: Which AWS services do you use in your day to day life?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a13')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a13">
+    EC2, S3, RDS, IAM, CloudWatch, Lambda, CloudFormation, ELB, Route53, and VPC.
+  </div>
+
+  <div class="question">
+    <strong>Q: Have you used AWS EFS? If yes, what issues did you run into?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a14')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a14">
+    Yes, performance bottlenecks under heavy I/O load and mounting issues in multi-AZ setups.
+  </div>
+
+  <div class="question">
+    <strong>Q: When will you go for EFS over EBS in real-time?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a15')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a15">
+    When shared storage is needed across multiple EC2s or in serverless environments. EBS is for single-instance use.
+  </div>
+
+  <div class="question">
+    <strong>Q: Disable AWS console access to the IAM Users.</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a16')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a16">
+    Remove IAM user passwords or disable console access via IAM settings. Use programmatic access only if required.
+  </div>
+
+  <div class="question">
+    <strong>Q: How can AWS Lambda in one AWS account connect to S3 bucket in another account?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a17')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a17">
+    Use resource-based S3 bucket policy to allow access from Lambda’s execution role ARN from another account.
+  </div>
+
+  <div class="question">
+    <strong>Q: What is AWS STS and how does it work?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a18')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a18">
+    AWS STS (Security Token Service) provides temporary, limited-privilege credentials for IAM roles and users to access AWS services securely.
+  </div>
+
+  <div class="question">
+    <strong>Q: What is trust in AWS and why is it used?</strong>
+    <button class="show-answer" onclick="toggleAnswer('aws-a19')">Show Answer</button>
+  </div>
+  <div class="answer" id="aws-a19">
+    Trust in AWS IAM defines which entities (users/roles) can assume another role using `sts:AssumeRole`. It’s used for cross-account or service access.
+  </div>
+</div>
 
  <div class="question-box" id="git">
   <div class="question">
