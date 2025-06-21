@@ -395,10 +395,203 @@
 
   <div class="question-box" id="docker">
     <div class="question">
-      <strong>Q: What is Docker?</strong>
+      <strong>What is Linux?</strong>
       <button class="show-answer" onclick="toggleAnswer('docker-a1')">Show Answer</button>
     </div>
-    <div class="answer" id="docker-a1">Docker is a containerization platform used to package applications and their dependencies into containers.</div>
+    <div class="answer" id="docker-a1"> Linux is an open-source operating system kernel widely used in servers, desktops, and embedded systems.</div>
+    <div class="question">
+  <strong>Q: Lecture 26: Can you restore lost per file? If not, how can you access the instance?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a26')">Show Answer</button>
+</div>
+<div class="answer" id="a26">
+  If the file is lost and not backed up, you can’t restore it. If it's an EC2 instance, use EC2 user-data or create a new volume and attach it to access the instance.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 27: /Var is almost 90 percent full. What will be your next steps?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a27')">Show Answer</button>
+</div>
+<div class="answer" id="a27">
+  Identify large files using <code>du -sh *</code> in /var.<br/>
+  Clear old logs using <code>logrotate</code> or remove unwanted files.<br/>
+  Optionally, increase volume size.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 28: Linux Server is slow due to High CPU utilization. How will you fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a28')">Show Answer</button>
+</div>
+<div class="answer" id="a28">
+  Use <code>top</code> or <code>htop</code> to identify CPU-heavy processes.<br/>
+  Restart or kill high-usage processes, check for infinite loops or memory leaks.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 29: Application deployed on Nginx returns Connection Refused. How will you fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a29')">Show Answer</button>
+</div>
+<div class="answer" id="a29">
+  Check if the application is running and listening on the port.<br/>
+  Verify firewall rules and Nginx config. Check logs for errors.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 30: SSH to an instance stopped working. How will you troubleshoot the issue?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a30')">Show Answer</button>
+</div>
+<div class="answer" id="a30">
+  Check security groups, key permissions, and if SSH service is running.<br/>
+  Use EC2 Serial Console or mount the volume to another instance if needed.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 31: Find and list the log files older than 7 days in /var/log folder.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a31')">Show Answer</button>
+</div>
+<div class="answer" id="a31">
+  <code>find /var/log -type f -mtime +7</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 32: Find and remove the log files older than 30 days in a folder.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a32')">Show Answer</button>
+</div>
+<div class="answer" id="a32">
+  <code>find /your/folder -type f -mtime +30 -exec rm -f {} \;</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 33: Cronjob + Shell script to perform advanced log rotation.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a33')">Show Answer</button>
+</div>
+<div class="answer" id="a33">
+  Create a script to compress and archive logs. Add a cronjob:<br/>
+  <code>0 0 * * * /path/to/your-log-rotate-script.sh</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 34: Bulk creation of Linux users using CSV file.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a34')">Show Answer</button>
+</div>
+<div class="answer" id="a34">
+  Use a script:<br/>
+  <code>while IFS=, read -r username password; do useradd $username; echo "$username:$password" | chpasswd; done &lt; users.csv</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 35: Service Health monitor script in Bash</strong>
+  <button class="show-answer" onclick="toggleAnswer('a35')">Show Answer</button>
+</div>
+<div class="answer" id="a35">
+  Use <code>systemctl is-active service_name</code><br/>
+  If inactive, send alert or restart the service.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 36: Find and delete files over 100MB</strong>
+  <button class="show-answer" onclick="toggleAnswer('a36')">Show Answer</button>
+</div>
+<div class="answer" id="a36">
+  <code>find /path -type f -size +100M -exec rm -i {} \;</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 37: Get the list of users who logged in today</strong>
+  <button class="show-answer" onclick="toggleAnswer('a37')">Show Answer</button>
+</div>
+<div class="answer" id="a37">
+  Use <code>last -F | grep "$(date '+%b %d')" | cut -d ' ' -f1 | sort | uniq</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 38: Website doesn't load. How will you investigate?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a38')">Show Answer</button>
+</div>
+<div class="answer" id="a38">
+  Check DNS resolution, server status, firewall, and web server logs. Use <code>curl -v</code> or <code>ping</code> to debug.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 39: Using sed command, how to remove first and last line of the file</strong>
+  <button class="show-answer" onclick="toggleAnswer('a39')">Show Answer</button>
+</div>
+<div class="answer" id="a39">
+  <code>sed '1d;$d' filename</code>
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 40: Explain DNS in simple words.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a40')">Show Answer</button>
+</div>
+<div class="answer" id="a40">
+  DNS translates domain names into IP addresses so browsers can load websites.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 41: Explain the complete flow of the request from client to server (OSI Model)</strong>
+  <button class="show-answer" onclick="toggleAnswer('a41')">Show Answer</button>
+</div>
+<div class="answer" id="a41">
+  Request goes through layers: App → Transport (TCP) → Network (IP) → Data Link → Physical → Server, then reverse path for response.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 42: Explain the difference between Forward Proxy and Reverse Proxy</strong>
+  <button class="show-answer" onclick="toggleAnswer('a42')">Show Answer</button>
+</div>
+<div class="answer" id="a42">
+  Forward Proxy hides client identity; used by clients.<br/>
+  Reverse Proxy hides backend servers; used by servers (like Nginx).
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 43: User reports slowness in the app. How would you approach this?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a43')">Show Answer</button>
+</div>
+<div class="answer" id="a43">
+  Check server CPU, memory, DB, and network latency.<br/>
+  Use tools like top, ping, and logs to find root cause.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 44: Curl works with IP, fails with domain. Why?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a44')">Show Answer</button>
+</div>
+<div class="answer" id="a44">
+  DNS issue: domain name isn't resolving. Check /etc/resolv.conf or DNS records.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 45: Website returns 502 HTTP Status code. What can be the issue?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a45')">Show Answer</button>
+</div>
+<div class="answer" id="a45">
+  502 means Bad Gateway. Backend server might be down or misconfigured. Check Nginx/Apache and app logs.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 46: What is the difference between 0.0.0.0 and 127.0.0.1?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a46')">Show Answer</button>
+</div>
+<div class="answer" id="a46">
+  127.0.0.1 is localhost. 0.0.0.0 means "all interfaces". It's used to bind a service on all IPs.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 47: What is the difference between Public and Private Subnets?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a47')">Show Answer</button>
+</div>
+<div class="answer" id="a47">
+  Public subnet has internet gateway access. Private subnet doesn’t—used for backend servers.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 48: You accidentally created a private subnet instead of public. How will you fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a48')">Show Answer</button>
+</div>
+<div class="answer" id="a48">
+  Attach an internet gateway, update route table with IGW, and assign public IP to the instance.
+</div>
   </div>
 
   <div class="question-box" id="kubernetes">
