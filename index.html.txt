@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LearnNext - DevOps Tools</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      animation: fadeIn 2s ease-in-out;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem;
+    }
+
+    .tool-btn {
+      background-color: #00bcd4;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .tool-btn:hover {
+      background-color: #008ba3;
+      transform: scale(1.05);
+    }
+
+    .question-box {
+      display: none;
+      margin: 1rem auto;
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      border-radius: 12px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .question {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .question strong {
+      flex: 1;
+    }
+
+    .answer {
+      display: none;
+      background-color: #ffffff22;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .show-answer {
+      background-color: #fff;
+      color: #333;
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .footer {
+  margin-top: auto;
+}
+   .footer {
+  margin-top: 40px;
+  font-style: italic;
+  text-align: center;
+  color: white;
+  background-color: #222; /* dark background to contrast white text */
+  padding: 20px 0;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LearnNext</h1>
+    <p>Explore DevOps tools and interview questions</p>
+  </header>
+
+  <div class="btn-container">
+    <button class="tool-btn" onclick="showTool('git')">Git</button>
+    <button class="tool-btn" onclick="showTool('docker')">Docker</button>
+    <button class="tool-btn" onclick="showTool('kubernetes')">Kubernetes</button>
+    <button class="tool-btn" onclick="showTool('jenkins')">Jenkins</button>
+    <button class="tool-btn" onclick="showTool('terraform')">Terraform</button>
+  </div>
+
+ <div class="question-box" id="git">
+  <div class="question">
+    <strong>Q: What is Git?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a1')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a1">
+    Git is a distributed version control system used to track changes in source code during software development.
+  </div>
+
+  <div class="question">
+    <strong>Q: Git Fork vs Git Clone</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a2')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a2">
+    Git Fork creates a personal copy of a GitHub repository, allowing contributions via pull requests. Git Clone creates a local copy of a repository on your computer for development.
+  </div>
+
+  <div class="question">
+    <strong>Q: When do you use Git Fork instead of Git Clone?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a3')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a3">
+    I use Git Fork when contributing to a public project I don't own. It creates a copy in my GitHub account where I can push changes and create a pull request.
+  </div>
+
+  <div class="question">
+    <strong>Q: How does Git Fork work in practice?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a4')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a4">
+    Fork the project → Clone to local → Create a branch → Make changes → Push to your fork → Open a pull request to the original repository.
+  </div>
+
+  <div class="question">
+    <strong>Q: Git Fetch vs Git Pull</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a5')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a5">
+    Git Fetch downloads changes but does not apply them. Git Pull fetches and merges the changes into your current branch.
+  </div>
+
+  <div class="question">
+    <strong>Q: Which do you prefer: Git Fetch or Git Pull?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a6')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a6">
+    I prefer Git Fetch to preview incoming changes before merging, which helps avoid conflicts and unexpected updates.
+  </div>
+
+  <div class="question">
+    <strong>Q: Git Rebase vs Git Merge</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a7')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a7">
+    Git Merge keeps full history and adds a merge commit. Git Rebase rewrites history by applying your changes on top of another branch for a cleaner history.
+  </div>
+
+  <div class="question">
+    <strong>Q: How do you handle merge conflicts?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a8')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a8">
+    I manually resolve conflicts in the files, stage them with <code>git add</code>, and then commit with <code>git commit</code>. I also use tools like VSCode merge editor.
+  </div>
+
+  <div class="question">
+    <strong>Q: Have you used Git tags? Why?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a9')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a9">
+    Yes, I use Git tags to mark release versions like v1.0.0. It helps track stable points in the project history.
+  </div>
+
+  <div class="question">
+    <strong>Q: How to combine multiple commits into one?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a10')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a10">
+    Use <code>git rebase -i HEAD~n</code> and change "pick" to "squash" for the commits you want to combine into a single commit.
+  </div>
+
+  <div class="question">
+    <strong>Q: 10 Git commands you use daily?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a11')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a11">
+    git clone, git status, git add, git commit, git push, git pull, git fetch, git branch, git checkout, git log
+  </div>
+
+  <div class="question">
+    <strong>Q: How to prevent a file from being pushed?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a12')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a12">
+    Add it to .gitignore. If already tracked, run <code>git rm --cached filename</code> and commit the change.
+  </div>
+
+  <div class="question">
+    <strong>Q: What is the purpose of the .git folder?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a13')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a13">
+    The .git folder contains all Git metadata—commit history, configuration, branches, tags, and object database. It's what makes a directory a Git repository.
+  </div>
+
+  <div class="question">
+    <strong>Q: Can you restore a deleted .git folder?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a14')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a14">
+    Not easily. Once deleted, Git loses all history. Best solution is to re-clone the repo or restore from backup.
+  </div>
+
+  <div class="question">
+    <strong>Q: What if a secret was accidentally committed to Git?</strong>
+    <button class="show-answer" onclick="toggleAnswer('git-a15')">Show Answer</button>
+  </div>
+  <div class="answer" id="git-a15">
+    Remove the file using <code>git rm --cached</code>, rewrite history using BFG or filter-branch, rotate the secret, and force push the clean history.
+  </div>
+  <!-- ✅ Git Fork and Git Clone -->
+
+<div class="question">
+  <strong>Q: Explain a scenario where you used Git Fork instead of Git Clone</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a16')">Show Answer</button>
+</div>
+<div class="answer" id="git-a16">
+  I used Git Fork when contributing to an open-source project. Since I didn’t have push access, I forked the repository, made my changes, and created a pull request for review.
+</div>
+
+<div class="question">
+  <strong>Q: Git Fork in action with example</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a17')">Show Answer</button>
+</div>
+<div class="answer" id="git-a17">
+  Example: Fork the original repo on GitHub → Clone your fork → Create a new branch → Make changes → Push → Create Pull Request on GitHub.
+</div>
+
+<div class="question">
+  <strong>Q: Create a fork of the project and create a pull request</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a18')">Show Answer</button>
+</div>
+<div class="answer" id="git-a18">
+  1. Fork the project on GitHub<br>
+  2. Clone it locally<br>
+  3. Create a new branch and make changes<br>
+  4. Push the branch<br>
+  5. Go to your GitHub repo and open a Pull Request
+</div>
+
+<!-- ✅ Git Fetch and Pull -->
+
+<div class="question">
+  <strong>Q: Show how Git Fetch and Git Pull work in real-time</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a19')">Show Answer</button>
+</div>
+<div class="answer" id="git-a19">
+  Use <code>git fetch</code> to get remote changes without applying them. Then use <code>git diff</code> to inspect changes, and <code>git pull</code> to merge them locally.
+</div>
+
+<div class="question">
+  <strong>Q: Which command do you use more – Git Fetch or Git Pull, and why?</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a20')">Show Answer</button>
+</div>
+<div class="answer" id="git-a20">
+  I use <code>git fetch</code> more often to inspect changes before merging. It provides control and reduces the risk of unwanted changes breaking the codebase.
+</div>
+
+<div class="question">
+  <strong>Q: Practice Git Fetch vs Git Pull on a GitHub repo</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a21')">Show Answer</button>
+</div>
+<div class="answer" id="git-a21">
+  Clone a repo, make changes on GitHub, then run <code>git fetch</code> to bring changes locally, and <code>git pull</code> to apply them. Use <code>git diff origin/main</code> to compare.
+</div>
+
+<!-- ✅ Git Merge and Rebase -->
+
+<div class="question">
+  <strong>Q: Show practically how Git Rebase is different from Git Merge</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a22')">Show Answer</button>
+</div>
+<div class="answer" id="git-a22">
+  Use <code>git merge</code> to join histories with a merge commit. Use <code>git rebase</code> to replay your changes on top of the latest branch, producing linear history.
+</div>
+
+<div class="question">
+  <strong>Q: How to explain Git Merge vs Git Rebase in Interviews</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a23')">Show Answer</button>
+</div>
+<div class="answer" id="git-a23">
+  Merge preserves history and shows how features combine. Rebase creates cleaner history by placing your changes on top of another branch. Rebase before merging PRs for cleaner logs.
+</div>
+
+<div class="question">
+  <strong>Q: Practice Git Merge vs Git Rebase</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a24')">Show Answer</button>
+</div>
+<div class="answer" id="git-a24">
+  Create a feature branch. Make changes and try both <code>git merge main</code> and <code>git rebase main</code>. Observe the differences with <code>git log --graph</code>.
+</div>
+
+<!-- ✅ Git Branching and Collaboration -->
+
+<div class="question">
+  <strong>Q: Explain the Git Branching Strategy used in your company</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a25')">Show Answer</button>
+</div>
+<div class="answer" id="git-a25">
+  We used Git Flow: main (production), develop (staging), feature branches, hotfix branches. This structured workflow helped manage releases and features cleanly.
+</div>
+
+<div class="question">
+  <strong>Q: Explain 3 challenges faced with Git during work experience</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a26')">Show Answer</button>
+</div>
+<div class="answer" id="git-a26">
+  1. Frequent merge conflicts<br>
+  2. Mistaken force pushes<br>
+  3. Accidentally pushing sensitive data
+</div>
+
+<div class="question">
+  <strong>Q: Explain the recent Git challenge and how you addressed it</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a27')">Show Answer</button>
+</div>
+<div class="answer" id="git-a27">
+  A teammate force-pushed over my commits. I recovered my work using <code>git reflog</code> and cherry-picked the lost changes onto a new branch.
+</div>
+
+<div class="question">
+  <strong>Q: Explain Git Merge Strategies – Ours and Theirs</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a28')">Show Answer</button>
+</div>
+<div class="answer" id="git-a28">
+  Ours keeps your current branch’s changes. Theirs keeps the incoming branch’s changes. Use during merge conflicts with: <code>git checkout --ours filename</code> or <code>--theirs</code>.
+</div>
+
+<div class="question">
+  <strong>Q: Create a Merge Conflict and resolve it locally using Git merge</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a29')">Show Answer</button>
+</div>
+<div class="answer" id="git-a29">
+  1. Create two branches and edit the same line in both<br>
+  2. Merge one into the other<br>
+  3. Git will show a conflict<br>
+  4. Manually fix it, then <code>git add</code> and <code>git commit</code>
+</div>
+
+<!-- ✅ Advanced Git Concepts -->
+
+<div class="question">
+  <strong>Q: How do you combine multiple commits into a single commit?</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a30')">Show Answer</button>
+</div>
+<div class="answer" id="git-a30">
+  Use <code>git rebase -i HEAD~n</code> and mark later commits as <code>squash</code>. This creates a cleaner commit history.
+</div>
+
+<!-- ✅ Git Configuration and Safety -->
+
+<div class="question">
+  <strong>Q: A teammate accidentally committed a Kubernetes Secret – what to do?</strong>
+  <button class="show-answer" onclick="toggleAnswer('git-a31')">Show Answer</button>
+</div>
+<div class="answer" id="git-a31">
+  1. Remove the secret using <code>git rm --cached</code><br>
+  2. Rotate the secret<br>
+  3. Clean history using BFG or <code>git filter-branch</code><br>
+  4. Force push the cleaned branch
+</div>
+</div>
+
+  <div class="question-box" id="docker">
+    <div class="question">
+      <strong>Q: What is Docker?</strong>
+      <button class="show-answer" onclick="toggleAnswer('docker-a1')">Show Answer</button>
+    </div>
+    <div class="answer" id="docker-a1">Docker is a containerization platform used to package applications and their dependencies into containers.</div>
+  </div>
+
+  <div class="question-box" id="kubernetes">
+    <div class="question">
+      <strong>Q: What is Kubernetes?</strong>
+      <button class="show-answer" onclick="toggleAnswer('kube-a1')">Show Answer</button>
+    </div>
+    <div class="answer" id="kube-a1">Kubernetes is an open-source platform for automating deployment, scaling, and operations of application containers.</div>
+  </div>
+
+  <div class="question-box" id="jenkins">
+    <div class="question">
+      <strong>Q: What is Jenkins?</strong>
+      <button class="show-answer" onclick="toggleAnswer('jenkins-a1')">Show Answer</button>
+    </div>
+    <div class="answer" id="jenkins-a1">Jenkins is an automation server used to build, test, and deploy code continuously with CI/CD.</div>
+  </div>
+
+  <div class="question-box" id="terraform">
+    <div class="question">
+      <strong>Q: What is Terraform?</strong>
+      <button class="show-answer" onclick="toggleAnswer('tf-a1')">Show Answer</button>
+    </div>
+    <div class="answer" id="tf-a1">Terraform is an open-source IaC (Infrastructure as Code) tool that allows you to define and provision infrastructure using a high-level configuration language.</div>
+  </div>
+
+  <script>
+    function showTool(toolId) {
+      const allBoxes = document.querySelectorAll('.question-box');
+      allBoxes.forEach(box => box.style.display = 'none');
+
+      const box = document.getElementById(toolId);
+      if (box) box.style.display = 'block';
+    }
+
+    function toggleAnswer(id) {
+      const answer = document.getElementById(id);
+      answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+   <footer class="footer">
+  © 2025 Git Learning Hub. All rights reserved.
+</footer>
+
+</body>
+</html>
