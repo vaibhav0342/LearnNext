@@ -969,12 +969,162 @@
     <div class="answer" id="jenkins-a1">Jenkins is an automation server used to build, test, and deploy code continuously with CI/CD.</div>
   </div>
 
+  <!-- Terraform Questions -->
   <div class="question-box" id="terraform">
     <div class="question">
       <strong>Q: What is Terraform?</strong>
       <button class="show-answer" onclick="toggleAnswer('tf-a1')">Show Answer</button>
     </div>
     <div class="answer" id="tf-a1">Terraform is an open-source IaC (Infrastructure as Code) tool that allows you to define and provision infrastructure using a high-level configuration language.</div>
+
+<div class="question">
+  <strong>Q: What is Terraform and why is it used?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a61')">Show Answer</button>
+</div>
+<div class="answer" id="a61">
+  Terraform is an open-source IaC tool used to provision and manage infrastructure across cloud providers using declarative configuration files.
+</div>
+
+<div class="question">
+  <strong>Q: What is the difference between Terraform and CloudFormation?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a62')">Show Answer</button>
+</div>
+<div class="answer" id="a62">
+  Terraform is cloud-agnostic, uses HCL, has a larger community, and supports modules. CloudFormation is AWS-specific, uses JSON/YAML.
+</div>
+
+<div class="question">
+  <strong>Q: Explain Terraform workflow (init, plan, apply).</strong>
+  <button class="show-answer" onclick="toggleAnswer('a63')">Show Answer</button>
+</div>
+<div class="answer" id="a63">
+  - <code>terraform init</code>: initializes config<br />
+  - <code>terraform plan</code>: shows what will be changed<br />
+  - <code>terraform apply</code>: applies the changes
+</div>
+
+<div class="question">
+  <strong>Q: What is a Terraform state file?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a64')">Show Answer</button>
+</div>
+<div class="answer" id="a64">
+  It's a JSON file that maps your configuration to real infrastructure. It tracks resource IDs and metadata.
+</div>
+
+<div class="question">
+  <strong>Q: How do you manage Terraform state in a team?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a65')">Show Answer</button>
+</div>
+<div class="answer" id="a65">
+  Use remote backends like S3 with state locking via DynamoDB to avoid conflicts and enable collaboration.
+</div>
+
+<div class="question">
+  <strong>Q: What are Terraform providers?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a66')">Show Answer</button>
+</div>
+<div class="answer" id="a66">
+  Providers are plugins that allow Terraform to interact with APIs of cloud providers or services (e.g., AWS, Azure, GitHub).
+</div>
+
+<div class="question">
+  <strong>Q: Difference between Terraform module and resource?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a67')">Show Answer</button>
+</div>
+<div class="answer" id="a67">
+  A resource is a single infrastructure object. A module is a reusable container for multiple resources grouped logically.
+</div>
+
+<div class="question">
+  <strong>Q: What is Terraform taint and when would you use it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a68')">Show Answer</button>
+</div>
+<div class="answer" id="a68">
+  <code>terraform taint</code> marks a resource to be destroyed and recreated on next apply. Useful when something gets corrupted.
+</div>
+
+<div class="question">
+  <strong>Q: Lecture 116: How do you import existing infrastructure into Terraform?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a69')">Show Answer</button>
+</div>
+<div class="answer" id="a69">
+  Use <code>terraform import &lt;resource.type.name&gt; &lt;resource_id&gt;</code>. Then manually add the resource config to your .tf file.
+</div>
+
+<div class="question">
+  <strong>Q: What is the purpose of output variables?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a70')">Show Answer</button>
+</div>
+<div class="answer" id="a70">
+  Output variables expose values (like IPs, URLs) after a run. They can be used by modules or external scripts.
+</div>
+
+<div class="question">
+  <strong>Q: What is a backend in Terraform?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a71')">Show Answer</button>
+</div>
+<div class="answer" id="a71">
+  A backend determines how state is loaded and where it is stored. Examples: local, S3, Consul, etc.
+</div>
+
+<div class="question">
+  <strong>Q: What are locals in Terraform and when to use them?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a72')">Show Answer</button>
+</div>
+<div class="answer" id="a72">
+  Locals define reusable expressions or values within a module. Use them for simplifying logic and avoiding repetition.
+</div>
+
+<div class="question">
+  <strong>Q: How do you handle secrets in Terraform?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a73')">Show Answer</button>
+</div>
+<div class="answer" id="a73">
+  Avoid hardcoding secrets. Use environment variables, encrypted backends, or external secret managers like AWS Secrets Manager or Vault.
+</div>
+
+<div class="question">
+  <strong>Q: How do you manage multiple environments in Terraform?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a74')">Show Answer</button>
+</div>
+<div class="answer" id="a74">
+  Use workspaces, separate state files, or directory structures with different variable values per environment (dev/staging/prod).
+</div>
+
+<div class="question">
+  <strong>Q: What is the difference between count and for_each?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a75')">Show Answer</button>
+</div>
+<div class="answer" id="a75">
+  <code>count</code> is index-based and works with integers.<br />
+  <code>for_each</code> is map/set-based and better for unique resource configurations.
+</div>
+
+<div class="question">
+  <strong>Q: What is a data source in Terraform?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a76')">Show Answer</button>
+</div>
+<div class="answer" id="a76">
+  Data sources allow Terraform to fetch data from external systems (e.g., existing AWS resources) without managing them.
+</div>
+
+<div class="question">
+  <strong>Q: How do you upgrade Terraform version safely in a project?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a77')">Show Answer</button>
+</div>
+<div class="answer" id="a77">
+  1. Update required_version in config<br />
+  2. Run <code>terraform init -upgrade</code><br />
+  3. Check plan for changes and test in isolated environment
+</div>
+
+<div class="question">
+  <strong>Q: Can two Terraform resources depend on each other?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a78')">Show Answer</button>
+</div>
+<div class="answer" id="a78">
+  Yes, but it may create a circular dependency. Use <code>depends_on</code> carefully to manage order without introducing loops.
+</div>
   </div>
 
   <script>
