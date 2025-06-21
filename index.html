@@ -1122,6 +1122,146 @@
       <button class="show-answer" onclick="toggleAnswer('jenkins-a1')">Show Answer</button>
     </div>
     <div class="answer" id="jenkins-a1">Jenkins is an automation server used to build, test, and deploy code continuously with CI/CD.</div>
+  <div class="question">
+  <strong>Q: What are Jenkins shared libraries and how do they work?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a32')">Show Answer</button>
+</div>
+<div class="answer" id="a32">
+  Shared libraries allow reuse of common pipeline code across projects.<br />
+  They’re stored in a Git repo and loaded using <code>@Library</code> in Jenkinsfiles.
+</div>
+
+<div class="question">
+  <strong>Q: Talk about 5 build targets that you use on day to day basis.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a33')">Show Answer</button>
+</div>
+<div class="answer" id="a33">
+  1. Build<br />
+  2. Unit Test<br />
+  3. Linting<br />
+  4. Docker Image Build<br />
+  5. Push to Artifact Repository
+</div>
+
+<div class="question">
+  <strong>Q: Which artifact repository do you use for builds?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a34')">Show Answer</button>
+</div>
+<div class="answer" id="a34">
+  We use JFrog Artifactory / Nexus / GitHub Packages depending on the tech stack.
+</div>
+
+<div class="question">
+  <strong>Q: How do you configure Artifactory for your application in Maven?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a35')">Show Answer</button>
+</div>
+<div class="answer" id="a35">
+  Configure the <code>distributionManagement</code> and <code>repositories</code> in <code>pom.xml</code><br />
+  Set credentials in <code>settings.xml</code> under <code>server</code> section.
+</div>
+
+<div class="question">
+  <strong>Q: Build Passed Locally but Fails in CI, how will you troubleshoot?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a36')">Show Answer</button>
+</div>
+<div class="answer" id="a36">
+  Compare environments (e.g., Java/Python version, OS).<br />
+  Check for missing dependencies or environment variables in the pipeline.
+</div>
+
+<div class="question">
+  <strong>Q: CI Pipeline Succeeds but App is Broken in Prod, What action will you take?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a37')">Show Answer</button>
+</div>
+<div class="answer" id="a37">
+  Check environment-specific configs.<br />
+  Investigate logs and consider adding production tests or health checks in pipeline.
+</div>
+
+<div class="question">
+  <strong>Q: Pipeline Slows Down Over Time (Builds taking more time) - How will you fix?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a38')">Show Answer</button>
+</div>
+<div class="answer" id="a38">
+  Clean up workspace, use caching, and parallel steps.<br />
+  Archive only necessary artifacts and rotate logs/artifacts.
+</div>
+
+<div class="question">
+  <strong>Q: A developer pushes a feature branch, but the pipeline doesn't trigger.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a39')">Show Answer</button>
+</div>
+<div class="answer" id="a39">
+  Check webhook settings and branch filter in Jenkins or GitHub Actions.<br />
+  Ensure pipeline is configured to run on new branches.
+</div>
+
+<div class="question">
+  <strong>Q: Your build fails because it can't download a dependency from your artifact repos</strong>
+  <button class="show-answer" onclick="toggleAnswer('a40')">Show Answer</button>
+</div>
+<div class="answer" id="a40">
+  Check repo availability, authentication config, or proxy/firewall rules.<br />
+  Verify credentials in CI and local environment.
+</div>
+
+<div class="question">
+  <strong>Q: Python Build Fails on CI But Works Locally, What can be the issue?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a41')">Show Answer</button>
+</div>
+<div class="answer" id="a41">
+  Possibly due to missing dependencies, Python version mismatch, or permissions.<br />
+  Use a requirements.txt and virtual environment in CI.
+</div>
+
+<div class="question">
+  <strong>Q: Explain Python Application Build Process in Detail.</strong>
+  <button class="show-answer" onclick="toggleAnswer('a42')">Show Answer</button>
+</div>
+<div class="answer" id="a42">
+  1. Create virtual environment<br />
+  2. Install dependencies via <code>requirements.txt</code><br />
+  3. Run unit tests<br />
+  4. Package using setuptools / pyinstaller<br />
+  5. (Optional) Build Docker image
+</div>
+
+<div class="question">
+  <strong>Q: Using Static Code Analysis what kind of problems can you identify?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a43')">Show Answer</button>
+</div>
+<div class="answer" id="a43">
+  Detect security flaws, code smells, styling issues, unused variables, and potential bugs using tools like SonarQube, pylint, or flake8.
+</div>
+
+<div class="question">
+  <strong>Q: Static Code Analysis Slows Down CI Pipeline, How will you fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a44')">Show Answer</button>
+</div>
+<div class="answer" id="a44">
+  Run analysis in parallel or in a separate stage.<br />
+  Cache results or run full checks only on merge to main.
+</div>
+
+<div class="question">
+  <strong>Q: App in 'OutOfSync' State in Argo CD, But No Git Changes</strong>
+  <button class="show-answer" onclick="toggleAnswer('a45')">Show Answer</button>
+</div>
+<div class="answer" id="a45">
+  It could be due to cluster drift.<br />
+  Check if someone manually changed resources.<br />
+  Use <code>kubectl</code> to compare and sync from ArgoCD.
+</div>
+
+<div class="question">
+  <strong>Q: When a build fails in Jenkins, How will you send an email?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a46')">Show Answer</button>
+</div>
+<div class="answer" id="a46">
+  Configure email plugin in Jenkins.<br />
+  Use <code>emailext</code> in pipeline or <code>post</code> block:<br />
+  <code>post { failure { mail to: 'team@example.com' } }</code>
+</div>
   </div>
 
   <!-- Terraform Questions -->
