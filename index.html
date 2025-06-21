@@ -712,7 +712,254 @@
       <button class="show-answer" onclick="toggleAnswer('kube-a1')">Show Answer</button>
     </div>
     <div class="answer" id="kube-a1">Kubernetes is an open-source platform for automating deployment, scaling, and operations of application containers.</div>
-  </div>
+  <div class="question">
+  <strong>Q: Explain Kubernetes Cluster Architecture</strong>
+  <button class="show-answer" onclick="toggleAnswer('a32')">Show Answer</button>
+</div>
+<div class="answer" id="a32">
+  Kubernetes has a master-worker architecture:<br />
+  - Control Plane: API Server, Controller Manager, Scheduler, etcd<br />
+  - Nodes: run kubelet, kube-proxy, and containers via container runtime
+</div>
+
+<div class="question">
+  <strong>Q: How various components of Kubernetes interact when you run kubectl apply (Pod)</strong>
+  <button class="show-answer" onclick="toggleAnswer('a33')">Show Answer</button>
+</div>
+<div class="answer" id="a33">
+  1. `kubectl` sends request to API Server<br />
+  2. API Server stores Pod spec in etcd<br />
+  3. Scheduler assigns node<br />
+  4. Kubelet creates pod on the node<br />
+  5. Kube-proxy handles networking
+</div>
+
+<div class="question">
+  <strong>Q: What is the purpose of services in Kubernetes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a34')">Show Answer</button>
+</div>
+<div class="answer" id="a34">
+  Services provide stable networking to Pods, allowing internal/external access using DNS names, not pod IPs.
+</div>
+
+<div class="question">
+  <strong>Q: Why is hardcoding Pod IP communication a bad practice?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a35')">Show Answer</button>
+</div>
+<div class="answer" id="a35">
+  Pod IPs are ephemeral. Hardcoding them breaks communication when pods restart or reschedule. Use Services or DNS.
+</div>
+
+<div class="question">
+  <strong>Q: What are the types of services in Kubernetes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a36')">Show Answer</button>
+</div>
+<div class="answer" id="a36">
+  1. ClusterIP (default, internal)<br />
+  2. NodePort (external via node IP)<br />
+  3. LoadBalancer (via cloud LB)<br />
+  4. ExternalName (maps to external DNS)
+</div>
+
+<div class="question">
+  <strong>Q: What are labels and selectors in Kubernetes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a37')">Show Answer</button>
+</div>
+<div class="answer" id="a37">
+  Labels are key-value pairs to organize resources.<br />
+  Selectors match labels to filter resources — used in services, deployments, etc.
+</div>
+
+<div class="question">
+  <strong>Q: NodePort vs LoadBalancer service — which one and why?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a38')">Show Answer</button>
+</div>
+<div class="answer" id="a38">
+  Use LoadBalancer in cloud for automatic external IPs.<br />
+  Use NodePort for local testing or basic setups.
+</div>
+
+<div class="question">
+  <strong>Q: How are Kubernetes Services related to Kube Proxy?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a39')">Show Answer</button>
+</div>
+<div class="answer" id="a39">
+  kube-proxy maintains rules on each node to route traffic to backend pods using iptables or IPVS.
+</div>
+
+<div class="question">
+  <strong>Q: Disadvantage of LoadBalancer service type?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a40')">Show Answer</button>
+</div>
+<div class="answer" id="a40">
+  Requires cloud provider, consumes IPs, and incurs cost for each service.
+</div>
+
+<div class="question">
+  <strong>Q: What is a Headless Service and when to use it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a41')">Show Answer</button>
+</div>
+<div class="answer" id="a41">
+  Headless service (<code>clusterIP: None</code>) skips load-balancing, returns individual pod IPs — used in StatefulSets or custom discovery.
+</div>
+
+<div class="question">
+  <strong>Q: Can a Pod access a Service in another namespace?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a42')">Show Answer</button>
+</div>
+<div class="answer" id="a42">
+  Yes, use the full DNS: <code>service-name.namespace.svc.cluster.local</code>
+</div>
+
+<div class="question">
+  <strong>Q: Restrict DB Pod access to only one app in the namespace?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a43')">Show Answer</button>
+</div>
+<div class="answer" id="a43">
+  Use NetworkPolicies to allow only selected Pod labels to access DB pod.
+</div>
+
+<div class="question">
+  <strong>Q: Deployment strategy followed in your organization?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a44')">Show Answer</button>
+</div>
+<div class="answer" id="a44">
+  We use RollingUpdate strategy with maxUnavailable and maxSurge settings for zero downtime.
+</div>
+
+<div class="question">
+  <strong>Q: Rollback strategy in your organization?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a45')">Show Answer</button>
+</div>
+<div class="answer" id="a45">
+  Use <code>kubectl rollout undo deployment/&lt;name&gt;</code><br />
+  Keep previous versions using Deployment history.
+</div>
+
+<div class="question">
+  <strong>Q: Design a solution to avoid rollbacks?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a46')">Show Answer</button>
+</div>
+<div class="answer" id="a46">
+  Use canary deployments, liveness probes, and automated testing before full rollout to catch issues early.
+</div>
+
+<div class="question">
+  <strong>Q: Deployment strategies used in past?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a47')">Show Answer</button>
+</div>
+<div class="answer" id="a47">
+  Blue-Green, Canary, and Rolling Updates depending on app criticality and traffic pattern.
+</div>
+
+<div class="question">
+  <strong>Q: What is CoreDNS in Kubernetes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a48')">Show Answer</button>
+</div>
+<div class="answer" id="a48">
+  CoreDNS is the cluster DNS server that resolves service and pod DNS names in Kubernetes.
+</div>
+
+<div class="question">
+  <strong>Q: Node tainted as NoSchedule — can you still schedule a Pod?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a49')">Show Answer</button>
+</div>
+<div class="answer" id="a49">
+  Only if the Pod tolerates the taint using a toleration in its spec.
+</div>
+
+<div class="question">
+  <strong>Q: Pod is in CrashLoopBackOff — how to fix it?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a50')">Show Answer</button>
+</div>
+<div class="answer" id="a50">
+  Check logs with <code>kubectl logs</code>, describe the pod, fix app errors or init issues, check health probes.
+</div>
+
+<div class="question">
+  <strong>Q: Difference between liveness and readiness probes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a51')">Show Answer</button>
+</div>
+<div class="answer" id="a51">
+  - Liveness: checks if app is running, restarts if fails<br />
+  - Readiness: checks if app is ready to serve traffic
+</div>
+
+<div class="question">
+  <strong>Q: Difference between Ingress and LoadBalancer?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a52')">Show Answer</button>
+</div>
+<div class="answer" id="a52">
+  LoadBalancer creates external IP per service.<br />
+  Ingress routes multiple services through one IP based on path or host rules.
+</div>
+
+<div class="question">
+  <strong>Q: App works with ClusterIP but fails with Ingress. Troubleshoot?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a53')">Show Answer</button>
+</div>
+<div class="answer" id="a53">
+  Check Ingress controller is installed.<br />
+  Validate rules, service targets, and DNS setup.
+</div>
+
+<div class="question">
+  <strong>Q: Why set up Ingress controller after creating Ingress?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a54')">Show Answer</button>
+</div>
+<div class="answer" id="a54">
+  Ingress resource is just a config. Ingress controller is needed to enforce it and route traffic.
+</div>
+
+<div class="question">
+  <strong>Q: Use Ingress with in-house Load Balancer?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a55')">Show Answer</button>
+</div>
+<div class="answer" id="a55">
+  Yes, configure Ingress controller to use your load balancer as external traffic entry point.
+</div>
+
+<div class="question">
+  <strong>Q: Deployment has 3 replicas but only 1 Pod is running — why?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a56')">Show Answer</button>
+</div>
+<div class="answer" id="a56">
+  Check resource limits, node taints, scheduling issues, and <code>kubectl describe deployment</code> for events.
+</div>
+
+<div class="question">
+  <strong>Q: Pod mounts ConfigMap but changes aren’t reflected?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a57')">Show Answer</button>
+</div>
+<div class="answer" id="a57">
+  Reload app manually or restart pod — changes to ConfigMap don’t auto-refresh unless the app watches the file.
+</div>
+
+<div class="question">
+  <strong>Q: How Node Affinity works and when to use?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a58')">Show Answer</button>
+</div>
+<div class="answer" id="a58">
+  Schedules pods on nodes matching specific labels. Used for hardware needs or zone-based placement.
+</div>
+
+<div class="question">
+  <strong>Q: Difference between Node Affinity and Node Selector?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a59')">Show Answer</button>
+</div>
+<div class="answer" id="a59">
+  Node Selector is simple equality match.<br />
+  Node Affinity supports advanced logic (e.g., soft/hard rules, multiple expressions).
+</div>
+
+<div class="question">
+  <strong>Q: What is container runtime in Kubernetes?</strong>
+  <button class="show-answer" onclick="toggleAnswer('a60')">Show Answer</button>
+</div>
+<div class="answer" id="a60">
+  It's the software that runs containers, e.g., containerd, CRI-O. Kubernetes uses it via the CRI interface.
+</div>
+ </div>
 
   <div class="question-box" id="jenkins">
     <div class="question">
